@@ -5,6 +5,44 @@
 
 using namespace std;
 
+//szyfr Cezara
+//funkcja do szyfrowania, argumenty to tekst do zaszyfrowania i przesuniêcie, zwraca zaszyfrowany tekst
+string encryption(string text, int shift) {
+    for (int i = 0; i < text.length(); i++)
+    {
+        if (text[i] >= 65 && text[i] <= 90) { // du¿e litery
+            text[i] += shift;
+            if (text[i] > 90) text[i] -= 26;
+        }
+        else if (text[i] >= 97 && text[i] <= 122) { // ma³e litery 
+            int pom = text[i];
+            pom += shift;                     //zmienna pomocnicza, u¿ywana do tego, aby index nie przekroczy³ rozmiaru tablicy ASCII
+            if (pom > 122) pom -= 26;
+            text[i] = pom;
+        }
+    }
+
+    return text;
+}
+
+//funkcja do odszyfrowania, argumenty to tekst do odszyfrowania i przesuniêcie, zwraca odszyfrowany tekst
+string decryption(string text, int shift) {
+    for (int i = 0; i < text.length(); i++)
+    {
+        if (text[i] >= 65 && text[i] <= 90) { // du¿e litery
+            text[i] -= shift;
+            if (text[i] < 65) text[i] += 26;
+        }
+        else if (text[i] >= 97 && text[i] <= 122) { // ma³e litery 
+            text[i] -= shift;
+            if (text[i] < 97) text[i] += 26;
+        }
+    }
+
+    return text;
+}
+
+
 //szyf Vigenere'a
 char tabLowercase[26][26];
 char tabUppercase[26][26];
@@ -48,42 +86,6 @@ string decryption(string text, string key) {
     return text;
 }
 
-//szyfr Cezara
-//funkcja do szyfrowania, argumenty to tekst do zaszyfrowania i przesuniêcie, zwraca zaszyfrowany tekst
-string encryption(string text, int shift) {
-    for (int i = 0; i < text.length(); i++)
-    {
-        if (text[i] >= 65 && text[i] <= 90) { // du¿e litery
-            text[i] += shift;
-            if (text[i] > 90) text[i] -= 26;
-        }
-        else if (text[i] >= 97 && text[i] <= 122) { // ma³e litery 
-            int pom = text[i];
-            pom += shift;                     //zmienna pomocnicza, u¿ywana do tego, aby index nie przekroczy³ rozmiaru tablicy ASCII
-            if (pom > 122) pom -= 26;
-            text[i] = pom;
-        }
-    }
-
-    return text;
-}
-
-//funkcja do odszyfrowania, argumenty to tekst do odszyfrowania i przesuniêcie, zwraca odszyfrowany tekst
-string decryption(string text, int shift) {
-    for (int i = 0; i < text.length(); i++)
-    {
-        if (text[i] >= 65 && text[i] <= 90) { // du¿e litery
-            text[i] -= shift;
-            if (text[i] < 65) text[i] += 26;
-        }
-        else if (text[i] >= 97 && text[i] <= 122) { // ma³e litery 
-            text[i] -= shift;
-            if (text[i] < 97) text[i] += 26;
-        }
-    }
-
-    return text;
-}
 
 int main()
 {
@@ -118,8 +120,8 @@ int main()
         cout << "2.Szyfr Vigenere'a" << endl;
         cout << "3.Zakoñcz program" << endl;
         cin >> option;
-
-        if (option == 1) {
+         
+        if (option == 1) {          //szyfr Cezara
             do {
                 text = "";
                 cout << endl << "Wybierz opcjê 1/2:" << endl;
@@ -224,7 +226,7 @@ int main()
 
             } while (option != 3);
         }
-        else if (option == 2) {
+        else if (option == 2) {         //szyfr Vigenere'a
             do {
                 cout << endl << "Wybierz opcjê 1/2:" << endl;
                 cout << "1. Szyfrowanie" << endl;
