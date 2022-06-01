@@ -138,10 +138,10 @@ int main()
                         cin >> option;
                     }
                     if (option == 1) {
-                        cout << "Wybrno szyfrowanie\n";
+                        cout << "Wybrano szyfrowanie\n";
                     }
                     else if (option == 2) {
-                        cout << "Wybrno deszyfrowanie\n";
+                        cout << "Wybrano deszyfrowanie\n";
                     }
                     else {
                         goto menu;
@@ -243,7 +243,7 @@ int main()
                     }
 
                     if (option == 1) {                                       //szyfrowanie
-                        cout << "Wybrno szyfrowanie\n";
+                        cout << "Wybrano szyfrowanie\n";
                         cout << "\nPodaj tekst do zaszyfrowania:\n";
                         getline(cin >> ws, text);
                         cout << "\nPodaj klucz szyfru:\n";
